@@ -1,3 +1,7 @@
+0.15    2003.02.17 22:31  Qing-Jie Zhou
+    * Change #!/usr/local/bin/perl -> #!/usr/bin/perl
+    * Modify README to correct cnmap.pl -> cnmap
+
 0.14    2003.02.17 22:06  Qing-Jie Zhou
     * Rename cnmap.pl -> cnmap to avoid bad behavior of Pod::HTML
     * Rename cnmapdir.pl -> cnmapdir

@@ -1,4 +1,4 @@
-Encode::CNMap version 0.14
+Encode::CNMap version 0.15
 ========
 
 NAME
@@ -35,18 +35,18 @@ SYNOPSIS
     printf "Simplified GB2312: %s\n", encode_to_gb($data);
     printf "Mixed GBK: %s\n", encode_to_gbk($data);
 
-    cnmap.pl "-command" [ *inputfile* ...] > *outputfile*
-    cnmapdir.pl "-command" *inputdir/file* *outputdir/file*
+    cnmap "-command" [ *inputfile* ...] > *outputfile*
+    cnmapdir "-command" *inputdir/file* *outputdir/file*
 
-    % cnmap.pl -s2b5 gbk.txt > big5.txt
-    % cnmap.pl -s2gb gbk.txt > gb.txt
-    % cnmap.pl -t2gb big5.txt > gb.txt
-    % cnmap.pl -t2gbk big5.txt big5-2.txt > gbk.txt
+    % cnmap -s2b5 gbk.txt > big5.txt
+    % cnmap -s2gb gbk.txt > gb.txt
+    % cnmap -t2gb big5.txt > gb.txt
+    % cnmap -t2gbk big5.txt big5-2.txt > gbk.txt
 
-    % cnmapdir.pl -s2b5 gbkdir big5dir
-    % cnmapdir.pl -s2gb gbkdir gbdir
-    % cnmapdir.pl -t2gb big5dir gbdir
-    % cnmapdir.pl -t2gbk big5dir gbkdir
+    % cnmapdir -s2b5 gbkdir big5dir
+    % cnmapdir -s2gb gbkdir gbdir
+    % cnmapdir -t2gb big5dir gbdir
+    % cnmapdir -t2gbk big5dir gbkdir
 
 DESCRIPTION
     This module implements China-based Chinese charset encodings.
