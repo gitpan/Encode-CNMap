@@ -1,4 +1,4 @@
-Encode::CNMap version 0.15
+Encode::CNMap version 0.16
 ========
 
 NAME
@@ -60,6 +60,11 @@ DESCRIPTION
 
     To find how to use this module in detail, see Encode.
 
+BUGS, REQUESTS, COMMENTS
+
+Please report any requests, suggestions or bugs via
+http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Encode-CNMap
+
 INSTALLATION
 
 To install this module type the following:
@@ -79,4 +84,4 @@ COPYRIGHT AND LICENCE
 Copyright (C) 2003 Qing-Jie Zhou <qjzhou@hotmail.com>
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself. 
+it under the same terms as Perl itself.

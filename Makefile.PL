@@ -55,6 +55,9 @@ WriteMakefile(
                            },
 	      # OS 390 winges about line numbers > 64K ???
 	      XSOPT => '-nolinenumbers',
+          ($] >= 5.005 ?    ## Add these new keywords supported since 5.005
+      		(ABSTRACT_FROM => 'CNMap.pm', # retrieve abstract from module
+       		AUTHOR     => 'Qing-Jie Zhou <qjzhou@hotmail.com>') : ()),
 	      );
 
 package MY;

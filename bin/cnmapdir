@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #use ExtUtils::testlib;
-$VERSION = '0.15';
+$VERSION = '0.16';
 
 =head1 NAME
 
@@ -126,12 +126,17 @@ sub ProcessSub($$$) {
 
 __END__
 
-=head1 SEE ALSO
+=head1 BUGS, REQUESTS, COMMENTS
 
-L<Encode::CNMap>, L<cnmap>, L<Encode::HanConvert>, L<Encode>
+Please report any requests, suggestions or bugs via
+http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Encode-CNMap
 
 =head1 AUTHORS
 
 Qing-Jie Zhou E<lt>qjzhou@hotmail.comE<gt>
+
+=head1 SEE ALSO
+
+L<Encode::CNMap>, L<cnmap>, L<Encode::HanConvert>, L<Encode>
 
 =cut

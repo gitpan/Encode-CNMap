@@ -1,7 +1,7 @@
 package Encode::CNMap;
 use vars qw/$VERSION @EXPORT @EXPORT_OK/;
 
-$VERSION = "0.15";
+$VERSION = "0.16";
 @EXPORT = qw(
     simp_to_b5 simp_to_gb trad_to_gb trad_to_gbk
     encode_to_b5 encode_to_gb encode_to_gbk
@@ -96,12 +96,17 @@ Encodings supported are as follows.
 
 To find how to use this module in detail, see L<Encode>.
 
-=head1 SEE ALSO
+=head1 BUGS, REQUESTS, COMMENTS
 
-L<cnmap>, L<cnmapdir>, L<Encode>, L<Encode::CN>, L<Encode::HanConvert>, L<Encode::HanExtra>
+Please report any requests, suggestions or bugs via
+http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Encode-CNMap
 
 =head1 AUTHORS
 
 Qing-Jie Zhou E<lt>qjzhou@hotmail.comE<gt>
+
+=head1 SEE ALSO
+
+L<cnmap>, L<cnmapdir>, L<Encode>, L<Encode::CN>, L<Encode::HanConvert>, L<Encode::HanExtra>
 
 =cut

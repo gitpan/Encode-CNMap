@@ -3,6 +3,8 @@
 #	.Tab   Unicode -> Encoding
 #	.Ucm   Encoding -> Unicode, Original
 
+$VERSION = "0.16";
+
 &tab2ucm("gb2312-simp", "NJUC2GB.TAB", "euc-cn.ucm", "gb2312-add.dat");
 &tab2ucm("big5-trad", "NJUC2B5.TAB", "cp950.ucm", "");
 
