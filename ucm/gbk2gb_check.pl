@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # Ensure GB2312-add.dat is working
 
-$VERSION = "0.20";
+$VERSION = "0.21";
 
 chdir "ucm" if !(-e "gb2312-add.dat");
 

@@ -1,11 +1,11 @@
-1. Yong-Wei Wu suggested to use mapping inside Microsoft Word
+﻿1. Yong-Wei Wu suggested to use mapping inside Microsoft Word
    (Simplified Chinese Version)
 2. I have tried, but there are still some mapping which cannot
    be resolved in both current Encode::CNMap version and
    Microsoft mappings.
 3. I consider to write a perl utility to compare GBK and GB2312
    ucm files in detail, in order to find out exactly key diffs
-   and to provides mappings such as ۏ(GBK)->��(GB2312).
+   and to provides mappings such as 蹚(GBK)->趟(GB2312).
 
 I am busy this week and next week. :(
 

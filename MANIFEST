@@ -25,3 +25,4 @@ ucm/makeall.bat     DOS utility to make, install and test current encoding
 ucm/NJUC2B5.TAB     Unicode to big5 mapping file (copied from NJSTAR)
 ucm/NJUC2GB.TAB     Unicode to gb2312 mapping file (copied from NJSTAR)
 ucm/tab2ucm.pl      Combine TAB and original ucm into enhanced ucm
+META.yml            Module meta-data (added by MakeMaker)

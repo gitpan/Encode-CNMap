@@ -1,3 +1,8 @@
+0.21    2004.03.07 23:45 Qing-Jie Zhou
+    * Use utf8 encodings in source file
+    * Rewrite test to use utf8 feature of Perl 5.8.0
+    * Correct test bugs under LANG=en_US.UTF-8, Thanks meg@malachiarts.org
+
 0.20    2003.05.25 14:28  Qing-Jie Zhou
     * Modify ucm/tab2ucm.pl to generate UNIX format on Windows platform
     * Add ucm/makeall.bat to make, install and test current encoding

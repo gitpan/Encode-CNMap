@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #use ExtUtils::testlib;
-$VERSION = '0.20';
+$VERSION = '0.21';
 
 =head1 NAME
 
@@ -70,6 +70,8 @@ sub ProcessSub($$$) {
 	if(-f $fin) {	# File Processing
 		print "$space   $fin -> $fout ... ";
 		open R, $fin or goto read_err;
+		my ($dev,$ino,$mode,$nlink,$uid,$gid,$rdev,$size,
+       		$atime,$mtime,$ctime,$blksize,$blocks) = stat(R);
 		binmode(R);
 		sysread R, $buf, 16*1024*1024 or goto read_err;
 		close R or goto read_err;
@@ -79,6 +81,7 @@ sub ProcessSub($$$) {
 		binmode(W);
 		syswrite W, $buf or goto write_err;
 		close W or print or goto write_err;
+		utime $mtime, $mtime, $fout;
 		print "OK\n";
 		return;
 		

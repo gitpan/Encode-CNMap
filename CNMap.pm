@@ -1,7 +1,7 @@
-package Encode::CNMap;
+锘縫ackage Encode::CNMap;
 use vars qw/$VERSION @EXPORT @EXPORT_OK/;
 
-$VERSION = "0.20";
+$VERSION = "0.21";
 @EXPORT = qw(
     simp_to_b5 simp_to_gb trad_to_gb trad_to_gbk
     encode_to_b5 encode_to_gb encode_to_gbk
@@ -57,28 +57,28 @@ Encode::CNMap - enhanced Chinese encodings with Simplified-Traditional auto-mapp
 	use Encode;
 	use Encode::CNMap;
 
-	# Simplified encoding (GBK/GB) -> Big5 encoding い地い地
-	$data="中華中华";
+	# Simplified encoding (GBK/GB) -> Big5 encoding 銇勫湴銇勫湴
+	$data="涓彲涓崕";
 	printf "[Mixed GBK] %s", $data;
 	printf " -> [Traditional Big5] %s\n", simp_to_b5($data);
 
-	# Simplified encoding (GBK/GB) -> GB2312 encoding 中华中华
-	$data="中華中华";
+	# Simplified encoding (GBK/GB) -> GB2312 encoding 涓崕涓崕
+	$data="涓彲涓崕";
 	printf "[Mixed GBK] %s", $data;
 	printf " -> [Simplified GB2312] %s\n", simp_to_gb($data);
 	
-	# Traditional encoding (Big5) -> GB2312 encoding 中华中华
-	$data="い地い地";
+	# Traditional encoding (Big5) -> GB2312 encoding 涓崕涓崕
+	$data="銇勫湴銇勫湴";
 	printf "[Traditional Big5] %s", $data;
 	printf " -> [Simplified GB2312] %s\n", trad_to_gb($data);
 
-	# Traditional encoding (Big5) -> GBK encoding 中華中華
-	$data="い地い地";
+	# Traditional encoding (Big5) -> GBK encoding 涓彲涓彲
+	$data="銇勫湴銇勫湴";
 	printf "[Traditional Big5] %s", $data;
 	printf " -> [Mixed GBK] %s\n", trad_to_gbk($data);
 
 	# Encoding with Simplified<->Traditional Auto-Converting
-	$data=Encode::decode("gbk", "中華中华");
+	$data=Encode::decode("gbk", "涓彲涓崕");
 	printf "Traditional Big5: %s\n", encode_to_b5($data);
 	printf "Simplified GB2312: %s\n", encode_to_gb($data);
 	printf "Mixed GBK: %s\n", encode_to_gbk($data);

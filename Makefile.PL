@@ -20,7 +20,7 @@ my ($enc2xs, $encode_h) = ();
 PATHLOOP:
 for my $d (@Config{qw/bin sitebin vendorbin/}, 
 	   (split /$Config{path_sep}/o, $ENV{PATH})){
-    for my $f (qw/enc2xs enc2xs5.7.3/){
+    for my $f (qw/enc2xs enc2xs5.7.3 enc2xs.bat/){
         my $path = File::Spec->catfile($d, $f);
         -r $path and $enc2xs = $path and last PATHLOOP;
     }
@@ -50,6 +50,7 @@ WriteMakefile(
 		  DIST_DEFAULT => 'all tardist',
 	      },
 	      MAN3PODS	=> {},
+	      NO_META	=> 1,
 	      PREREQ_PM => {
 			    'Encode'     => "1.41",
                            },
