@@ -1,7 +1,7 @@
 package Encode::CNMap;
 use 5.008;
 use vars qw/$VERSION @EXPORT @EXPORT_OK/;
-$VERSION = "0.31";
+$VERSION = "0.32";
 @EXPORT_OK = @EXPORT = qw(
 	simp_to_b5 simp_to_gb trad_to_gb trad_to_gbk
 	utf8_to_b5 utf8_to_gb utf8_to_gbk simp_to_utf8 trad_to_utf8
@@ -56,7 +56,7 @@ Encode::CNMap - enhanced Chinese encodings with Simplified-Traditional auto-mapp
     no warnings;  # disable utf8 output warning
     my $data;
 
-    $data = "涓彲涓崕";
+    $data = "中華中华";
     printf "Mix [GBK]  %s\n", $data;
     printf "   -> Simp[GB]   %s\n", simp_to_gb( $data );
     printf "   -> Trad[Big5] %s\n", simp_to_b5( $data );
@@ -64,7 +64,7 @@ Encode::CNMap - enhanced Chinese encodings with Simplified-Traditional auto-mapp
     printf "   -> Simp[utf8] %s\n", simp_to_simputf8( $data );
     printf "   -> Trad[utf8] %s\n", simp_to_tradutf8( $data );
 
-    $data = "銇勫湴銇勫湴";
+    $data = "い地い地";
     printf "Trad[Big5] %s\n", $data;
     printf "   -> Simp[GB]   %s\n", trad_to_gb( $data );
     printf "   -> Mix [GBK]  %s\n", trad_to_gbk( $data );
@@ -72,7 +72,7 @@ Encode::CNMap - enhanced Chinese encodings with Simplified-Traditional auto-mapp
     printf "   -> Simp[utf8] %s\n", trad_to_simputf8( $data );
     printf "   -> Trad[utf8] %s\n", trad_to_tradutf8( $data );
 
-    $data = Encode::decode("gbk", "涓彲涓崕");
+    $data = Encode::decode("gbk", "中華中华");
     printf "Mix [utf8] %s\n", $data;
     printf "   -> Simp[GB]   %s\n", utf8_to_gb( $data );
     printf "   -> Mix [GBK]  %s\n", utf8_to_gbk( $data );
@@ -94,6 +94,9 @@ Encodings supported are as follows.
 
 To find how to use this module in detail, see L<Encode>.
 
+cnmapwx is a GUI interface to cnmap and cnmapdir. Binary distribution
+for Microsoft Windows can be down from L<http://bookbot.sourceforge.net/>
+
 =head1 BUGS, REQUESTS, COMMENTS
 
 Please report any requests, suggestions or bugs via
@@ -102,7 +105,8 @@ L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Encode-CNMap>
 
 =head1 SEE ALSO
 
-L<cnmap>, L<cnmapdir>, L<Encode>, L<Encode::CN>, L<Encode::HanConvert>, L<Encode::HanExtra>
+L<cnmap>, L<cnmapdir>, L<cnmapwx>, L<Encode>, L<Encode::CN>,
+L<Encode::HanConvert>, L<Encode::HanExtra>
 
 =head1 COPYRIGHT AND LICENSE
 

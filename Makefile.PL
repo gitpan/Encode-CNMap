@@ -39,7 +39,7 @@ for my $d (@INC){
 print "encode.h is at $encode_h\n";
 
 WriteMakefile(
-		  EXE_FILES     => [ <bin/cnmap bin/cnmapdir> ],
+		  EXE_FILES     => [ <bin/cnmap bin/cnmapdir bin/cnmapwx> ],
               INC		=> "-I$encode_h",
 	      NAME		=> 'Encode::'.$name,
 	      VERSION_FROM	=> "$name.pm",

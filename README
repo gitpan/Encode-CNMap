@@ -1,4 +1,4 @@
-Encode::CNMap
+﻿Encode::CNMap
 =================
 Enhanced Chinese encodings with Simplified-Traditional auto-mapping
 
@@ -93,6 +93,9 @@ DESCRIPTION
     -------------------------------------------------------------------
 
     To find how to use this module in detail, see Encode.
+
+    cnmapwx is a GUI interface to cnmap and cnmapdir. Binary distribution
+    for Microsoft Windows can be down from http://bookbot.sourceforge.net/
 
 BUGS, REQUESTS, COMMENTS
     Please report any requests, suggestions or bugs via

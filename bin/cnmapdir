@@ -1,17 +1,26 @@
 #!/usr/bin/perl
 #use ExtUtils::testlib;
-use 5.008;
-our $VERSION = '0.31';
-use Encode::CNMap;
+our $VERSION = '0.32';
+$|=1;
 
+use 5.008;
+use Encode::CNMap;
 use strict;
 use File::Spec;
+use File::Basename;
+
+# Get Opts
 use Getopt::Std;
 my %opts;
 getopts('-helpust2cgbk5', \%opts);
 &VERSION_MESSAGE if defined( $opts{h} ) or scalar(%opts)==0;
-$SIG{__WARN__} = sub {};
 
+# Signal Handling
+our $quit_flag = 0;
+$SIG{__WARN__} = sub { };
+$SIG{'INT'} = sub {	$quit_flag = 1;	print "\n  [SIG] Received SIGINT/QUIT\n"; };
+
+# Show Help
 sub VERSION_MESSAGE {
 	print <<"USAGE";
 cnmapdir $VERSION under perl $]
@@ -52,16 +61,22 @@ Supported transformed encodings
   -?2cb5  Utf8 encodings with Big5 words only, convert unkown GBK words
 
 USAGE
+	# Pause if required
+	if( defined $opts{p} ) {
+		print "Press any key to continue ... ";
+		getc(STDIN);
+	}
 	exit();
 }
 
+# Get in/out directory
 my ($dirin, $dirout);
 $dirin=$ARGV[0];
 $dirin=File::Spec->curdir() if $dirin eq '';
 $dirout=$ARGV[1];
 $dirout='/out' if $dirout eq '';
 
-# caculate work functions
+# caculate from and to encodings
 my $from_encoding = $opts{s} ? ":encoding(gbk)" : $opts{t} ? ":encoding(big5-trad)" : ":utf8";
 my $to_func = $opts{c} ?
 	( $opts{5} ? *utf8_to_tradutf8 : $opts{k} ? *utf8_to_utf8 : $opts{b} ? *utf8_to_simputf8 : *utf8_to_utf8 ) :
@@ -69,13 +84,20 @@ my $to_func = $opts{c} ?
 my $to_encoding = $opts{c} ? ":utf8" :
 	$opts{5} ? ":encoding(big5-trad)" : $opts{k} ? ":encoding(gbk)" : $opts{b} ? ":encoding(gb2312-simp)" : ":utf8";
 
+# do work
 &ProcessSub("", $dirin, $dirout);
+
+# Pause if required
+if( defined $opts{p} ) {
+	print "Press any key to continue ... ";
+	getc(STDIN);
+}
 
 sub ProcessSub($$$) {
 	my ($space, $fin, $fout)=@_;
 
 	if(-f $fin) {	# File Processing
-		print "$space   $fin -> $fout ... ";
+		printf "$space   %-24.24s -> %-24.24s ... ", basename($fin), basename($fout);
 		print "Overwriting " if -f $fout;
 		my ($fhin, $fhout);
 		open $fhin, "<$from_encoding", $fin or goto read_err;
@@ -117,6 +139,7 @@ sub ProcessSub($$$) {
 				, File::Spec->catfile($fin, $filename)
 				, File::Spec->catfile($fout, $filename)
 			) if not($filename=~/^\./);
+			return if $quit_flag;
 		}
 		return;
 
@@ -145,6 +168,7 @@ B<cnmapdir> C<-command> I<inputdir/file> I<outputdir/file>
 =head1 USAGE
 
     cnmapdir -h
+	cnmapdir -hp
 
     cnmapdir -s2b5 gbkdir big5dir
     cnmapdir -s2gb gbkdir gbdir
@@ -174,6 +198,10 @@ the outputdir.
 If outputdir is missing, then /out is assumped. If outputdir is not
 existed, it will be created automatically. If inputdir is a file, it
 will be converted to outputfile.
+
+The C<-h> switch: Show version and help infomation.
+
+The C<-p> switch: pause after execution.
 
 The C<-s2b5> switch: Mixed GB2312/GBK -> Traditional Big5.
 
@@ -213,7 +241,7 @@ L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Encode-CNMap>
 
 =head1 SEE ALSO
 
-L<Encode::CNMap>, L<cnmap>, L<Encode::HanConvert>, L<Encode>
+L<Encode::CNMap>, L<cnmapwx>, L<cnmap>, L<Encode::HanConvert>, L<Encode>
 
 =head1 COPYRIGHT AND LICENSE
 

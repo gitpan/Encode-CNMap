@@ -1,5 +1,12 @@
 Revision history for Perl extension Encode::CNMap.
 
+0.32    2004.03.16 10:04 Qing-Jie Zhou
+    * Change all formats from DOS -> UNIX
+    * Add pause option to cnmap and cnmapdir to show help under win32 dist
+    * Add gui interface cnmapwx
+    * Improve display format of cnmapdir
+    * Change CNMap.pm to non-utf8 format to pass perlapp build
+
 0.31    2004.03.14 13:06 Qing-Jie Zhou
     * Add command-line help to cnmap and cnmapdir
     * Add examples of piped operations to cnmap documents
