@@ -12,7 +12,7 @@
 <file name="README" url="README">
 </file>
 <folder name="t" url="t">
-<file name="CNMap.t" url="t/CNMap.t">
+<file name="00base.t" url="t/00base.t">
 </file>
 <file name="zhengqi.b5" url="t/zhengqi.b5">
 </file>

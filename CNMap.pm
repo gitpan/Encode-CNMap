@@ -1,7 +1,7 @@
-package Encode::CNMap;
+﻿package Encode::CNMap;
 use vars qw/$VERSION @EXPORT @EXPORT_OK/;
 
-$VERSION = "0.22";
+$VERSION = "0.23";
 @EXPORT = qw(
     simp_to_b5 simp_to_gb trad_to_gb trad_to_gbk
     encode_to_b5 encode_to_gb encode_to_gbk
@@ -99,8 +99,8 @@ To find how to use this module in detail, see L<Encode>.
 =head1 BUGS, REQUESTS, COMMENTS
 
 Please report any requests, suggestions or bugs via
-http://sourceforge.net/projects/bookbot
-http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Encode-CNMap
+L<http://sourceforge.net/projects/bookbot>
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Encode-CNMap>
 
 =head1 SEE ALSO
 

@@ -1,5 +1,5 @@
-Encode::CNMap version 0.22
-========
+???Encode::CNMap
+=================
 
 NAME
     Encode::CNMap - enhanced Chinese encodings with
@@ -84,5 +84,4 @@ COPYRIGHT AND LICENCE
 
 Copyright 2003-2004 Qing-Jie Zhou <qjzhou@hotmail.com>
 
-This library is free software; you can redistribute it and/or modify it under
-the same terms as Perl itself.
+This library is free software; you can redistribute it

@@ -1,5 +1,12 @@
 Revision history for Perl extension Encode::CNMap.
 
+0.23    2004.03.13 18:00 Qing-Jie Zhou
+    * Correct support URL Link
+    * Correct bad make when CVS is used
+    * Correct warnings when building on Linux
+      change ucm files from UNIX format to U8-UNIX format
+    * Change t/CNMap.t to t/00base.t
+
 0.22    2004.03.12 00:20 Qing-Jie Zhou
     * Add proj.kpf to simplify debugging
     * Remove 2 TAB files to reduce dist size

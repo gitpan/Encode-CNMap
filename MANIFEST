@@ -6,7 +6,7 @@ Makefile.PL         Makefile writer
 MANIFEST            This list of files
 README              The Instructions
 proj.kpf            Komodo project file
-t/CNMap.t           Test of library
+t/00base.t          Test of library
 t/zhengqi.b5        Test data file of Traditional big5 version
 t/zhengqi.gb        Test data file of Simplified gb2312 version
 t/zhengqi.gbk       Test data file of mixed gbk version
