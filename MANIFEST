@@ -1,5 +1,5 @@
 bin/cnmap.pl        Command-line utility to convert files
-bin/cnmapdir.pl		Command-line utility to convert directories
+bin/cnmapdir.pl     Command-line utility to convert directories
 Changes             Changelog
 CNMap.pm            Enhanced encoding with auto-mapping
 Makefile.PL         Makefile writer

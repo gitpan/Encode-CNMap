@@ -1,7 +1,7 @@
 package Encode::CNMap;
 use vars qw/$VERSION @EXPORT @EXPORT_OK/;
 
-$VERSION = "0.11";
+$VERSION = "0.12";
 @EXPORT = qw(
     simp_to_b5 simp_to_gb trad_to_gb trad_to_gbk
     encode_to_b5 encode_to_gb encode_to_gbk
