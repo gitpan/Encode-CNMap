@@ -63,6 +63,7 @@ SYNOPSIS
     cnmap -u2gbk utf8.txt > gbk.txt
     cnmap -u2cgb utf8.txt > utf8-cnsimp.txt
     cnmap -u2cb5 utf8.txt > utf8-cntrad.txt
+	cat gbk.txt | cnmap -s2gb | more
 
     cnmapdir -h
     cnmapdir -s2b5 gbkdir big5dir

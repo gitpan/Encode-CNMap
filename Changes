@@ -1,5 +1,9 @@
 Revision history for Perl extension Encode::CNMap.
 
+0.31    2004.03.14 13:06 Qing-Jie Zhou
+    * Add command-line help to cnmap and cnmapdir
+    * Add examples of piped operations to cnmap documents
+
 0.30    2004.03.14 12:08 Qing-Jie Zhou
     * Important: change encode_... functions into utf8_...
     * Important: Add more functions related with utf8 conversions
@@ -8,6 +12,8 @@ Revision history for Perl extension Encode::CNMap.
     * Add utf8 conversions test case
     * Reformat CNMap.pm
     * Change support site to http://bookbot.sourceforge.net/
+    * tab2ucm.pl can generate utf8-encoded ucm
+    * regenerate ucm in utf8 encodings and correct wrong big5 ucm
 
 0.23    2004.03.13 18:00 Qing-Jie Zhou
     * Correct support URL Link

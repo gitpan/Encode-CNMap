@@ -1,8 +1,83 @@
 #!/usr/bin/perl
 #use ExtUtils::testlib;
 use 5.008;
-our $VERSION = '0.30';
+our $VERSION = '0.31';
 use Encode::CNMap;
+
+use strict;
+use Getopt::Std;
+my %opts;
+getopts('-helpust2cgbk5', \%opts);
+&VERSION_MESSAGE if defined( $opts{h} ) or scalar(%opts)==0;
+$SIG{__WARN__} = sub {};
+
+sub VERSION_MESSAGE {
+	print <<"USAGE";
+cnmap $VERSION under perl $]
+
+Usage: cnmap -command [InputFileName] [ > OutputFileName]
+  Traditional <-> Simplified Chinese converter
+
+  cnmap -h
+    Show help
+
+  cnmap -s2b5 gbk.txt > big5.txt
+  cnmap -s2gb gbk.txt > gb.txt
+  cnmap -s2c gbk.txt > utf8.txt
+  cnmap -s2cgb gbk.txt > utf8-cnsimp.txt
+  cnmap -s2cb5 gbk.txt > utf8-cntrad.txt
+    Simplified GBK encoded texts to other encodings
+
+  cnmap -t2gb big5.txt > gb.txt
+  cnmap -t2gbk big5.txt > gbk.txt
+  cnmap -t2c big5.txt > utf8.txt
+  cnmap -t2cgb big5.txt > utf8-cnsimp.txt
+  cnmap -t2cb5 big5.txt > utf8-cntrad.txt
+    Traditioanl Big5 encoded texts to other encodings
+
+  cnmap -u2b5 utf8.txt > big5.txt
+  cnmap -u2gb utf8.txt > gb.txt
+  cnmap -u2gbk utf8.txt > gbk.txt
+  cnmap -u2cgb utf8.txt > utf8-cnsimp.txt
+  cnmap -u2cb5 utf8.txt > utf8-cntrad.txt
+    Utf8 encoded texts to other encodings
+
+  cat gbk.txt | cnmap -s2gb | more
+    Usage in piped operations
+
+Supported transformed encodings
+  -?2gb   GB2312 only encodings, convert unkown GBK words into GB2312
+  -?2b5   Big5 only encodings, convert unkown GBK words into Big5
+  -?2gbk  GBK encodings, mixed GB2312 + Big5 + plus
+  -?2c    Utf8 encodings, mixed GB2312 + Big5 + plus
+  -?2cgb  Utf8 encodings with GB2312 words only, convert unkown GBK workds
+  -?2cb5  Utf8 encodings with Big5 words only, convert unkown GBK words
+
+USAGE
+	exit();
+}
+
+# caculate work functions
+my $from_encoding = $opts{s} ? ":encoding(gbk)" : $opts{t} ? ":encoding(big5-trad)" : ":utf8";
+my $to_func = $opts{c} ?
+	( $opts{5} ? *utf8_to_tradutf8 : $opts{k} ? *utf8_to_utf8 : $opts{b} ? *utf8_to_simputf8 : *utf8_to_utf8 ) :
+	( $opts{5} ? *utf8_to_utf8 : $opts{k} ? *utf8_to_utf8 : $opts{b} ? *utf8_to_utf8 : *utf8_to_utf8 );
+my $to_encoding = $opts{c} ? ":utf8" :
+	$opts{5} ? ":encoding(big5-trad)" : $opts{k} ? ":encoding(gbk)" : $opts{b} ? ":encoding(gb2312-simp)" : ":utf8";
+
+# do work
+my $fh;
+if( defined( $ARGV[0] ) ) {
+	open $fh, "<$from_encoding", $ARGV[0];
+} else {
+	$fh = *STDIN;
+	binmode $fh, $from_encoding;
+}
+binmode STDOUT, $to_encoding;
+while ( <$fh> ) { print &$to_func( $_ ); }
+close $fh if defined $ARGV[0];
+
+__END__
 
 =head1 NAME
 
@@ -33,6 +108,8 @@ B<cnmap> C<-command> [ I<inputfile> ...] > I<outputfile>
     cnmap -u2gbk utf8.txt > gbk.txt
     cnmap -u2cgb utf8.txt > utf8-cnsimp.txt
     cnmap -u2cb5 utf8.txt > utf8-cntrad.txt
+
+    cat gbk.txt | cnmap -s2gb | more
 
 =head1 DESCRIPTION
 
@@ -72,39 +149,6 @@ The C<-u2gbk> switch: Mixed Utf8 -> Mixed GBK.
 The C<-u2cb5> switch: Mixed Utf8 -> Simplified GB2312 -> Utf8.
 
 The C<-u2cgb> switch: Mixed Utf8 -> Traditional Big5 -> Utf8.
-
-=cut
-
-use strict;
-use Getopt::Std;
-my %opts;
-BEGIN {
-    getopts('-helpust2cgbk5', \%opts);
-    if ( $opts{h} || scalar(%opts)==0 ) { system( "perldoc", $0 ); exit; }
-    $SIG{__WARN__} = sub {};
-}
-
-# caculate work functions
-my $from_encoding = $opts{s} ? ":encoding(gbk)" : $opts{t} ? ":encoding(big5-trad)" : ":utf8";
-my $to_func = $opts{c} ?
-	( $opts{5} ? *utf8_to_tradutf8 : $opts{k} ? *utf8_to_utf8 : $opts{b} ? *utf8_to_simputf8 : *utf8_to_utf8 ) :
-	( $opts{5} ? *utf8_to_utf8 : $opts{k} ? *utf8_to_utf8 : $opts{b} ? *utf8_to_utf8 : *utf8_to_utf8 );
-my $to_encoding = $opts{c} ? ":utf8" :
-	$opts{5} ? ":encoding(big5-trad)" : $opts{k} ? ":encoding(gbk)" : $opts{b} ? ":encoding(gb2312-simp)" : ":utf8";
-
-# do work
-my $fh;
-if( defined( $ARGV[0] ) ) {
-	open $fh, "<$from_encoding", $ARGV[0];
-} else {
-	$fh = *STDIN;
-	binmode $fh, $from_encoding;
-}
-binmode STDOUT, $to_encoding;
-while ( <$fh> ) { print &$to_func( $_ ); }
-close $fh if defined $ARGV[0];
-
-__END__
 
 =head1 BUGS, REQUESTS, COMMENTS
 
