@@ -1,5 +1,5 @@
-bin/cnmap.pl        Command-line utility to convert files
-bin/cnmapdir.pl     Command-line utility to convert directories
+bin/cnmap           Command-line utility to convert files
+bin/cnmapdir        Command-line utility to convert directories
 Changes             Changelog
 CNMap.pm            Enhanced encoding with auto-mapping
 Makefile.PL         Makefile writer
@@ -10,6 +10,7 @@ t/zhengqi.b5        Test data file of Traditional big5 version
 t/zhengqi.gb        Test data file of Simplified gb2312 version
 t/zhengqi.gbk       Test data file of mixed gbk version
 t/zheng_gb.b5       Test data file of big5, which translated from gb2312
+TODO                TODO
 ucm/big5-trad.ucm   Generated ucm of enhanced big5 encoding
 ucm/cp950.ucm       Original CP950 ucm of big5 encoding
 ucm/euc-cn.ucm      Original EUC-CN ucm of gb2312 encoding
