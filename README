@@ -1,0 +1,82 @@
+Encode::CNMap version 0.11
+========
+
+NAME
+    Encode::CNMap - enhanced Chinese encodings with
+    Simplified-Traditional auto-mapping
+
+SYNOPSIS
+	use Encode;
+	use Encode::CNMap;
+
+	# Simplified encoding (GBK/GB) -> Big5 encoding い地い地
+	$data="中華中华";
+	printf "[Mixed GBK] %s", $data;
+	printf " -> [Traditional Big5] %s\n", simp_to_b5($data);
+
+	# Simplified encoding (GBK/GB) -> GB2312 encoding 中华中华
+	$data="中華中华";
+	printf "[Mixed GBK] %s", $data;
+	printf " -> [Simplified GB2312] %s\n", simp_to_gb($data);
+	
+	# Traditional encoding (Big5) -> GB2312 encoding 中华中华
+	$data="い地い地";
+	printf "[Traditional Big5] %s", $data;
+	printf " -> [Simplified GB2312] %s\n", trad_to_gb($data);
+
+	# Traditional encoding (Big5) -> GBK encoding 中華中華
+	$data="い地い地";
+	printf "[Traditional Big5] %s", $data;
+	printf " -> [Mixed GBK] %s\n", trad_to_gbk($data);
+
+	# Encoding with Simplified<->Traditional Auto-Converting
+	$data=Encode::decode("gbk", "中華中华");
+	printf "Traditional Big5: %s\n", encode_to_b5($data);
+	printf "Simplified GB2312: %s\n", encode_to_gb($data);
+	printf "Mixed GBK: %s\n", encode_to_gbk($data);
+
+	cnmap.pl "-command" [ *inputfile* ...] > *outputfile*
+    cnmapdir.pl "-command" *inputdir/file* *outputdir/file*
+
+    % cnmap.pl -s2b5 gbk.txt > big5.txt
+    % cnmap.pl -s2gb gbk.txt > gb.txt
+    % cnmap.pl -t2gb big5.txt > gb.txt
+    % cnmap.pl -t2gbk big5.txt big5-2.txt > gbk.txt
+
+    % cnmapdir.pl -s2b5 gbkdir big5dir
+    % cnmapdir.pl -s2gb gbkdir gbdir
+    % cnmapdir.pl -t2gb big5dir gbdir
+    % cnmapdir.pl -t2gbk big5dir gbkdir
+
+DESCRIPTION
+    This module implements China-based Chinese charset encodings.
+    Encodings supported are as follows.
+
+      Canonical   Alias     Description
+    -------------------------------------------------------------------
+      gb2312-simp           Enhanced GB2312 simplified chinese encoding
+      big5-trad             Enhanced Big5 traditional chinese encoding
+    -------------------------------------------------------------------
+
+    To find how to use this module in detail, see Encode.
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+   enc2xs -C       # optional; updates Encode.pm's on-demand loading DB
+
+DEPENDENCIES
+
+This module requires perl version 5.8.0 or later.
+
+COPYRIGHT AND LICENCE
+
+Copyright (C) 2003 Qing-Jie Zhou <qjzhou@hotmail.com>
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself. 
