@@ -1,14 +1,14 @@
-﻿package Encode::CNMap;
+package Encode::CNMap;
 use vars qw/$VERSION @EXPORT @EXPORT_OK/;
 
-$VERSION = "0.21";
+$VERSION = "0.22";
 @EXPORT = qw(
     simp_to_b5 simp_to_gb trad_to_gb trad_to_gbk
     encode_to_b5 encode_to_gb encode_to_gbk
 );
 @EXPORT_OK = @EXPORT;
 use base 'Exporter';
- 
+
 use Encode;
 use XSLoader;
 XSLoader::load(__PACKAGE__,$VERSION);
@@ -49,9 +49,9 @@ sub encode_to_gbk($) {
 __END__
 
 =head1 NAME
- 
+
 Encode::CNMap - enhanced Chinese encodings with Simplified-Traditional auto-mapping
- 
+
 =head1 SYNOPSIS
 
 	use Encode;
@@ -66,7 +66,7 @@ Encode::CNMap - enhanced Chinese encodings with Simplified-Traditional auto-mapp
 	$data="中華中华";
 	printf "[Mixed GBK] %s", $data;
 	printf " -> [Simplified GB2312] %s\n", simp_to_gb($data);
-	
+
 	# Traditional encoding (Big5) -> GB2312 encoding 中华中华
 	$data="い地い地";
 	printf "[Traditional Big5] %s", $data;
@@ -99,14 +99,18 @@ To find how to use this module in detail, see L<Encode>.
 =head1 BUGS, REQUESTS, COMMENTS
 
 Please report any requests, suggestions or bugs via
+http://sourceforge.net/projects/bookbot
 http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Encode-CNMap
-
-=head1 AUTHORS
-
-Qing-Jie Zhou E<lt>qjzhou@hotmail.comE<gt>
 
 =head1 SEE ALSO
 
 L<cnmap>, L<cnmapdir>, L<Encode>, L<Encode::CN>, L<Encode::HanConvert>, L<Encode::HanExtra>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2003-2004 Qing-Jie Zhou E<lt>qjzhou@hotmail.comE<gt>
+
+This library is free software; you can redistribute it and/or modify it under
+the same terms as Perl itself.
 
 =cut

@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #use ExtUtils::testlib;
-$VERSION = '0.21';
+$VERSION = '0.22';
 
 =head1 NAME
 
@@ -68,11 +68,11 @@ sub ProcessSub($$) {
 		print "OK\n";
 		&Check($buf);
 		return;
-		
+
 		read_err:
 		print "Read Fail!\n";
 		return;
-		
+
 		write_err:
 		print "Write Fail!\n";
 		return;
@@ -80,7 +80,7 @@ sub ProcessSub($$) {
 
 	if(-d $fin) {	# Dir Processing
 		print "$space [$fin] ... ";
-		
+
 		my (@dir, $filename, $filein, $fileout);
 		opendir(DIR, $fin) or goto dir_err;
 		@dir=readdir(DIR) or goto dir_err;
@@ -93,12 +93,12 @@ sub ProcessSub($$) {
 			) if not($filename=~/^\./);
 		}
 		return;
-		
+
 		dir_err:
 		print "Read Fail!\n";
 		return;
 	}
-	
+
 	print "$space Unkown $fin ... Skipped\n";
 }
 
@@ -108,7 +108,7 @@ sub Check($) {
 	&$func($buf);
 	$curpos=0;
 	$orgpos=0;
-	
+
 	while( ($findpos=index($buf, "?", $curpos)) !=-1) {
 		if( substr($_[0], $orgpos+$findpos-$curpos, 1) eq '?') {
 			$orgpos=$orgpos+$findpos-$curpos+1;
@@ -131,7 +131,7 @@ sub ChangeChar($$) {
 			$findchar=substr($_[0], $findorgpos, 2);
 			# back to find first LF
 			$linestart=rindex($_[0], "\n", $findorgpos)+1;
-			$linestart+=4 if substr($_[0], $linestart, 4) eq '¡¡¡¡';
+			$linestart+=4 if substr($_[0], $linestart, 4) eq '';
 			# find 15 chinese chars before
 			for($i=$linestart; $i<$findorgpos-30; $i++) {
 				$i++ if ord(substr($_[0], $i, 1))>128;

@@ -1,3 +1,11 @@
+Revision history for Perl extension Encode::CNMap.
+
+0.22    2004.03.12 00:20 Qing-Jie Zhou
+    * Add proj.kpf to simplify debugging
+    * Remove 2 TAB files to reduce dist size
+    * Add copyright and license description
+    * Add support site as http://sourceforge.net/projects/bookbot
+
 0.21    2004.03.07 23:45 Qing-Jie Zhou
     * Use utf8 encodings in source file
     * Rewrite test to use utf8 feature of Perl 5.8.0

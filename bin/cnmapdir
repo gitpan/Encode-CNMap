@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #use ExtUtils::testlib;
-$VERSION = '0.21';
+$VERSION = '0.22';
 
 =head1 NAME
 
@@ -84,11 +84,11 @@ sub ProcessSub($$$) {
 		utime $mtime, $mtime, $fout;
 		print "OK\n";
 		return;
-		
+
 		read_err:
 		print "Read Fail!\n";
 		return;
-		
+
 		write_err:
 		print "Write Fail!\n";
 		return;
@@ -96,7 +96,7 @@ sub ProcessSub($$$) {
 
 	if(-d $fin) {	# Dir Processing
 		print "$space [$fin -> $fout] ... ";
-		
+
 		my (@dir, $filename, $filein, $fileout);
 		opendir(DIR, $fin) or goto dir_err;
 		@dir=readdir(DIR) or goto dir_err;
@@ -106,7 +106,7 @@ sub ProcessSub($$$) {
 			print "Mkdir ";
 			mkdir $fout or goto mkdir_err;
 		}
-		
+
 		print "OK\n";
 		foreach $filename (@dir) {
 			&ProcessSub($space."  "
@@ -115,16 +115,16 @@ sub ProcessSub($$$) {
 			) if not($filename=~/^\./);
 		}
 		return;
-		
+
 		dir_err:
 		print "Read Fail!\n";
 		return;
-		
+
 		mkdir_err:
 		print "Fail!\n";
 		return;
 	}
-	
+
 	print "$space Unkown $fin ... Skipped\n";
 }
 
@@ -133,14 +133,18 @@ __END__
 =head1 BUGS, REQUESTS, COMMENTS
 
 Please report any requests, suggestions or bugs via
+http://sourceforge.net/projects/bookbot
 http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Encode-CNMap
-
-=head1 AUTHORS
-
-Qing-Jie Zhou E<lt>qjzhou@hotmail.comE<gt>
 
 =head1 SEE ALSO
 
 L<Encode::CNMap>, L<cnmap>, L<Encode::HanConvert>, L<Encode>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2003-2004 Qing-Jie Zhou E<lt>qjzhou@hotmail.comE<gt>
+
+This library is free software; you can redistribute it and/or modify it under
+the same terms as Perl itself.
 
 =cut

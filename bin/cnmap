@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #use ExtUtils::testlib;
-$VERSION = '0.21';
+$VERSION = '0.22';
 
 =head1 NAME
 
@@ -62,14 +62,18 @@ __END__
 =head1 BUGS, REQUESTS, COMMENTS
 
 Please report any requests, suggestions or bugs via
+http://sourceforge.net/projects/bookbot
 http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Encode-CNMap
-
-=head1 AUTHORS
-
-Qing-Jie Zhou E<lt>qjzhou@hotmail.comE<gt>
 
 =head1 SEE ALSO
 
 L<Encode::CNMap>, L<cnmapdir>, L<Encode::HanConvert>, L<Encode>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2003-2004 Qing-Jie Zhou E<lt>qjzhou@hotmail.comE<gt>
+
+This library is free software; you can redistribute it and/or modify it under
+the same terms as Perl itself.
 
 =cut
