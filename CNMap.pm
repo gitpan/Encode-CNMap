@@ -1,48 +1,45 @@
-﻿package Encode::CNMap;
+package Encode::CNMap;
+use 5.008;
 use vars qw/$VERSION @EXPORT @EXPORT_OK/;
-
-$VERSION = "0.23";
-@EXPORT = qw(
-    simp_to_b5 simp_to_gb trad_to_gb trad_to_gbk
-    encode_to_b5 encode_to_gb encode_to_gbk
+$VERSION = "0.30";
+@EXPORT_OK = @EXPORT = qw(
+	simp_to_b5 simp_to_gb trad_to_gb trad_to_gbk
+	utf8_to_b5 utf8_to_gb utf8_to_gbk simp_to_utf8 trad_to_utf8
+	utf8_to_tradutf8 utf8_to_simputf8 utf8_to_utf8
+	simp_to_tradutf8 simp_to_simputf8 trad_to_simputf8 trad_to_tradutf8
 );
-@EXPORT_OK = @EXPORT;
 use base 'Exporter';
 
-use Encode;
+use Encode qw( from_to encode decode );
 use XSLoader;
-XSLoader::load(__PACKAGE__,$VERSION);
+XSLoader::load( __PACKAGE__,$VERSION );
 
-sub simp_to_b5($) {
-	Encode::from_to($_[0], 'gbk', 'big5-trad');
-	return $_[0];
-}
+sub simp_to_b5($)  { my $t = $_[0]; from_to( $t, "gbk",       "big5-trad"   ); $t; }
+sub simp_to_gb($)  { my $t = $_[0]; from_to( $t, "gbk",       "gb2312-simp" ); $t; }
+sub trad_to_gb($)  { my $t = $_[0]; from_to( $t, "big5-trad", "gb2312-simp" ); $t; }
+sub trad_to_gbk($) { my $t = $_[0]; from_to( $t, "big5-trad", "gbk"         ); $t; }
 
-sub simp_to_gb($) {
-	Encode::from_to($_[0], 'gbk', 'gb2312-simp');
-	return $_[0];
-}
+sub simp_to_utf8($){ decode( "gbk",         $_[0] ); }
+sub trad_to_utf8($){ decode( "big5-trad",   $_[0] ); }
 
-sub trad_to_gb($) {
-	Encode::from_to($_[0], 'big5-trad', 'gb2312-simp');
-	return $_[0];
-}
+sub utf8_to_b5($)  { encode( "big5-trad",   $_[0] ); }
+sub utf8_to_gb($)  { encode( "gb2312-simp", $_[0] ); }
+sub utf8_to_gbk($) { encode( "gbk",         $_[0] ); }
+sub utf8_to_utf8($){ $_[0]; }
 
-sub trad_to_gbk($) {
-	Encode::from_to($_[0], 'big5-trad', 'gbk');
-	return $_[0];
-}
+sub utf8_to_simputf8($) { decode( "gb2312-simp", encode( "gb2312-simp", $_[0] ) ); }
+sub utf8_to_tradutf8($) { decode( "big5-trad",   encode( "big5-trad",   $_[0] ) ); }
 
-sub encode_to_b5($) {
-	return Encode::encode("big5-trad", $_[0]);
-}
+sub simp_to_simputf8($) { my $t = $_[0]; from_to( $t, "gbk",       "gb2312-simp" );	decode( "gb2312-simp", $t ); }
+sub simp_to_tradutf8($) { my $t = $_[0]; from_to( $t, "gbk",       "big5-trad"   );	decode( "big5-trad",   $t ); }
+sub trad_to_simputf8($) { my $t = $_[0]; from_to( $t, "big5-trad", "gb2312-simp" );	decode( "gb2312-simp", $t ); }
+sub trad_to_tradutf8($) { decode( "big5-trad", $_[0] ); }
 
-sub encode_to_gb($) {
-	return Encode::encode("gb2312-simp", $_[0]);
-}
-
-sub encode_to_gbk($) {
-	return Encode::encode("gbk", $_[0]);
+sub cnmapfunc_byopts($) {
+	my $opts = $_[0];
+	my $from = $opts{s} ? "simp" : $opts{t} ? "trad" : "utf8";
+	my $to = $opts{C} ? ( $opts{5} ? "tradutf8" : "simputf8" ) :
+		$opts{5} ? "b5" : $opts{k} ? "gbk" : $opts{b} ? "gb" : "utf8";
 }
 
 1;
@@ -54,34 +51,35 @@ Encode::CNMap - enhanced Chinese encodings with Simplified-Traditional auto-mapp
 
 =head1 SYNOPSIS
 
-	use Encode;
-	use Encode::CNMap;
+    use Encode;
+    use Encode::CNMap;
+    no warnings;  # disable utf8 output warning
+    my $data;
 
-	# Simplified encoding (GBK/GB) -> Big5 encoding い地い地
-	$data="中華中华";
-	printf "[Mixed GBK] %s", $data;
-	printf " -> [Traditional Big5] %s\n", simp_to_b5($data);
+    $data = "中華中华";
+    printf "Mix [GBK]  %s\n", $data;
+    printf "   -> Simp[GB]   %s\n", simp_to_gb( $data );
+    printf "   -> Trad[Big5] %s\n", simp_to_b5( $data );
+    printf "   -> Mix [utf8] %s\n", simp_to_utf8( $data );
+    printf "   -> Simp[utf8] %s\n", simp_to_simputf8( $data );
+    printf "   -> Trad[utf8] %s\n", simp_to_tradutf8( $data );
 
-	# Simplified encoding (GBK/GB) -> GB2312 encoding 中华中华
-	$data="中華中华";
-	printf "[Mixed GBK] %s", $data;
-	printf " -> [Simplified GB2312] %s\n", simp_to_gb($data);
+    $data = "い地い地";
+    printf "Trad[Big5] %s\n", $data;
+    printf "   -> Simp[GB]   %s\n", trad_to_gb( $data );
+    printf "   -> Mix [GBK]  %s\n", trad_to_gbk( $data );
+    printf "   -> Mix [utf8] %s\n", trad_to_utf8( $data );
+    printf "   -> Simp[utf8] %s\n", trad_to_simputf8( $data );
+    printf "   -> Trad[utf8] %s\n", trad_to_tradutf8( $data );
 
-	# Traditional encoding (Big5) -> GB2312 encoding 中华中华
-	$data="い地い地";
-	printf "[Traditional Big5] %s", $data;
-	printf " -> [Simplified GB2312] %s\n", trad_to_gb($data);
-
-	# Traditional encoding (Big5) -> GBK encoding 中華中華
-	$data="い地い地";
-	printf "[Traditional Big5] %s", $data;
-	printf " -> [Mixed GBK] %s\n", trad_to_gbk($data);
-
-	# Encoding with Simplified<->Traditional Auto-Converting
-	$data=Encode::decode("gbk", "中華中华");
-	printf "Traditional Big5: %s\n", encode_to_b5($data);
-	printf "Simplified GB2312: %s\n", encode_to_gb($data);
-	printf "Mixed GBK: %s\n", encode_to_gbk($data);
+    $data = Encode::decode("gbk", "中華中华");
+    printf "Mix [utf8] %s\n", $data;
+    printf "   -> Simp[GB]   %s\n", utf8_to_gb( $data );
+    printf "   -> Mix [GBK]  %s\n", utf8_to_gbk( $data );
+    printf "   -> Trad[Big5] %s\n", utf8_to_b5( $data );
+    printf "   -> Mix [utf8] %s\n", utf8_to_utf8( $data );
+    printf "   -> Simp[utf8] %s\n", utf8_to_simputf8( $data );
+    printf "   -> Trad[utf8] %s\n", utf8_to_tradutf8( $data );
 
 =head1 DESCRIPTION
 
@@ -99,7 +97,7 @@ To find how to use this module in detail, see L<Encode>.
 =head1 BUGS, REQUESTS, COMMENTS
 
 Please report any requests, suggestions or bugs via
-L<http://sourceforge.net/projects/bookbot>
+L<http://bookbot.sourceforge.net/>
 L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Encode-CNMap>
 
 =head1 SEE ALSO

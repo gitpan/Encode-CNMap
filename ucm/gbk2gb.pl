@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # Generate gb2312-add.dat with given GBK and GB2312 coding
 
-$VERSION = "0.22";
+$VERSION = "0.30";
 
 $gbk=$ARGV[0];
 $gb2312=$ARGV[1];

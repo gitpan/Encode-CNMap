@@ -3,7 +3,7 @@
 # enc2xs version 1.31
 # Wed Jan 29 21:43:10 2003
 #
-use 5.7.2;
+use 5.008;
 use strict;
 use ExtUtils::MakeMaker;
 use Config;

@@ -1,6 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- Komodo Project File - DO NOT EDIT -->
 <project kpf_version="2" name="proj">
+<preference-set id="">
+  <string id="import_dirname">D:\src\Encode-CNMap</string>
+</preference-set>
 <file name="Makefile.PL" url="Makefile.PL">
 </file>
 <file name="MANIFEST" url="MANIFEST">
@@ -12,6 +15,9 @@
 <file name="README" url="README">
 </file>
 <folder name="t" url="t">
+<preference-set id="">
+  <string id="import_dirname">D:\src\Encode-CNMap\t</string>
+</preference-set>
 <file name="00base.t" url="t/00base.t">
 </file>
 <file name="zhengqi.b5" url="t/zhengqi.b5">
@@ -55,4 +61,10 @@
 <file name="tab2ucm.pl" url="ucm/tab2ucm.pl">
 </file>
 </folder>
+<folder name="examples" url="examples">
+<file name="demo.pl" url="examples/demo.pl">
+</file>
+</folder>
+<file name="Changes" url="Changes">
+</file>
 </project>

@@ -4,13 +4,14 @@
 #	.Tab   Unicode -> Encoding
 #	.Ucm   Encoding -> Unicode, Original
 
-$VERSION = "0.22";
+$VERSION = "0.30";
+use Encode qw( decode );
 
-&tab2ucm("gb2312-simp", "NJUC2GB.TAB", "euc-cn.ucm", "gb2312-add.dat");
-&tab2ucm("big5-trad", "NJUC2B5.TAB", "cp950.ucm", "");
+&tab2ucm("gb2312-simp", "NJUC2GB.TAB", "euc-cn.ucm", "gb2312-add.dat", "gbk");
+&tab2ucm("big5-trad", "NJUC2B5.TAB", "cp950.ucm", "", "big5");
 
 sub tab2ucm{
-my ($ucmname, $tabfile, $ucmorg, $patchfile)=@_;
+my ($ucmname, $tabfile, $ucmorg, $patchfile, $encode_from)=@_;
 my $ucmdst="$ucmname.ucm";
 
 #------------------Read TAB file
@@ -48,8 +49,7 @@ for($i=0, $ucode=0; $i<length($buf); $i+=2, $ucode++){
 }
 
 #------------------Generate result as an enhanced ucm file
-open W, ">$ucmdst";
-binmode W;
+open W, ">:unix:utf8", "$ucmdst";
 use POSIX qw(strftime);
 $curtime=localtime;
 print W <<EOSTART;
@@ -73,13 +73,13 @@ for($i=0, $ucode=0; $i<length($buf); $i+=2, $ucode++){
 	printf W "<U%04X> \\x%02X", $ucode, $encode_low;
 	printf W "\\x%02X", $encode_high if $encode_high>0;
 	printf W " |%d", $skip_flag;
-	print W " # $encode" if $encode_low>127 and $encode_high>=32;
+	printf W " # %s", decode($encode_from, $encode) if $encode_low>127 and $encode_high>=32;
 	print W "\n";
 }
 
 #------------------Read Patch file
 if($patchfile ne '') {
-	open PATCH, $patchfile;
+	open PATCH, "<:encoding($encode_from)", $patchfile;
 	while(<PATCH>) {
 		chomp;
 		next if $_ eq '';

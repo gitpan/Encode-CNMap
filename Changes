@@ -1,5 +1,14 @@
 Revision history for Perl extension Encode::CNMap.
 
+0.30    2004.03.14 12:08 Qing-Jie Zhou
+    * Important: change encode_... functions into utf8_...
+    * Important: Add more functions related with utf8 conversions
+    * Feature: cnmap and cnmapdir can support utf8 conversions
+    * cnmapdir can handle large files exceeds 16M limitation
+    * Add utf8 conversions test case
+    * Reformat CNMap.pm
+    * Change support site to http://bookbot.sourceforge.net/
+
 0.23    2004.03.13 18:00 Qing-Jie Zhou
     * Correct support URL Link
     * Correct bad make when CVS is used

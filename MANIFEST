@@ -5,6 +5,7 @@ CNMap.pm            Enhanced encoding with auto-mapping
 Makefile.PL         Makefile writer
 MANIFEST            This list of files
 README              The Instructions
+examples/demo.pl    Demo program
 proj.kpf            Komodo project file
 t/00base.t          Test of library
 t/zhengqi.b5        Test data file of Traditional big5 version
@@ -13,8 +14,6 @@ t/zhengqi.gbk       Test data file of mixed gbk version
 t/zheng_gb.b5       Test data file of big5, which translated from gb2312
 ucm/big5-trad.ucm   Generated ucm of enhanced big5 encoding
 ucm/cntest.bat      DOS utility to check bad encodings from GBK to GB2312
-ucm/cp950.ucm       Original CP950 ucm of big5 encoding
-ucm/euc-cn.ucm      Original EUC-CN ucm of gb2312 encoding
 ucm/gb2312-add.dat  Additional Patch to gb2312 encoding
 ucm/gb2312-simp.ucm Generated ucm of enhanced gb2312 encoding
 ucm/gbk2gb.pl       Generate gb2312-add.dat with given GBK and GB2312 coding

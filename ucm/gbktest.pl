@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #use ExtUtils::testlib;
-$VERSION = '0.22';
+$VERSION = '0.30';
 
 =head1 NAME
 
@@ -9,10 +9,6 @@ gbktest - Correct bad GBK characters by translating demo texts
 =head1 SYNOPSIS
 
 B<gbktest> I<inputdir/file>
-
-=head1 USAGE
-
-    % cnmapdir gbkdir
 
 =head1 DESCRIPTION
 
@@ -154,19 +150,24 @@ sub ChangeChar($$) {
 			system "gbk2gb.pl $findchar $getinput";
 }
 
+1;
 __END__
 
 =head1 BUGS, REQUESTS, COMMENTS
 
 Please report any requests, suggestions or bugs via
-http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Encode-CNMap
-
-=head1 AUTHORS
-
-Qing-Jie Zhou E<lt>qjzhou@hotmail.comE<gt>
+L<http://sourceforge.net/projects/bookbot>
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Encode-CNMap>
 
 =head1 SEE ALSO
 
 L<Encode::CNMap>, L<cnmap>, L<cnmapdir>, L<Encode::HanConvert>, L<Encode>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2003-2004 Qing-Jie Zhou E<lt>qjzhou@hotmail.comE<gt>
+
+This library is free software; you can redistribute it and/or modify it under
+the same terms as Perl itself.
 
 =cut
