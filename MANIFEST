@@ -20,6 +20,8 @@ ucm/gb2312-simp.ucm Generated ucm of enhanced gb2312 encoding
 ucm/gbk2gb.pl       Generate gb2312-add.dat with given GBK and GB2312 coding
 ucm/gbk2gb_check.pl Ensure GB2312-add.dat is working
 ucm/gbkcode.pl      Show Gbk and UTF-16BE coding
+ucm/gbktest.pl		Correct bad GBK characters by translating demo texts
+ucm/makeall.bat     DOS utility to make, install and test current encoding
 ucm/NJUC2B5.TAB     Unicode to big5 mapping file (copied from NJSTAR)
 ucm/NJUC2GB.TAB     Unicode to gb2312 mapping file (copied from NJSTAR)
 ucm/tab2ucm.pl      Combine TAB and original ucm into enhanced ucm

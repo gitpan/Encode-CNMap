@@ -1,6 +1,7 @@
+#!/usr/bin/perl
 # Show Gbk and UTF-16BE coding
 
-$VERSION = "0.16";
+$VERSION = "0.20";
 
 $gbk=$ARGV[0];
 

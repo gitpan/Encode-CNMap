@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #use ExtUtils::testlib;
-$VERSION = '0.16';
+$VERSION = '0.20';
 
 =head1 NAME
 
@@ -58,6 +58,7 @@ $dirout='/out' if $dirout eq '';
 our $func=*trad_to_gb;
 $func=*simp_to_b5 if $opts{5};
 $func=*simp_to_gb if $opts{s} and $opts{g};
+$func=*trad_to_gb if $opts{t} and !$opts{k};
 $func=*trad_to_gbk if $opts{t} and $opts{k};
 our $buf="";
 

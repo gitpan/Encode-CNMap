@@ -1,9 +1,10 @@
+#!/usr/bin/perl
 # Combine TAB and original ucm into enhanced ucm
 # .Tab + UCM -> UCM
 #	.Tab   Unicode -> Encoding
 #	.Ucm   Encoding -> Unicode, Original
 
-$VERSION = "0.16";
+$VERSION = "0.20";
 
 &tab2ucm("gb2312-simp", "NJUC2GB.TAB", "euc-cn.ucm", "gb2312-add.dat");
 &tab2ucm("big5-trad", "NJUC2B5.TAB", "cp950.ucm", "");
@@ -48,6 +49,7 @@ for($i=0, $ucode=0; $i<length($buf); $i+=2, $ucode++){
 
 #------------------Generate result as an enhanced ucm file
 open W, ">$ucmdst";
+binmode W;
 use POSIX qw(strftime);
 $curtime=localtime;
 print W <<EOSTART;

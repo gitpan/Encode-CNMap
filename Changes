@@ -1,3 +1,13 @@
+0.20    2003.05.25 14:28  Qing-Jie Zhou
+    * Modify ucm/tab2ucm.pl to generate UNIX format on Windows platform
+    * Add ucm/makeall.bat to make, install and test current encoding
+    * Add ucm/gbktest.pl to Correct bad GBK characters by translating demo texts
+    * Add #!/usr/bin/perl in all perl utilities
+    * Add $func=*trad_to_gb if $opts{t} and !$opts{k}; to support different default value
+    * Unkown GBK characters(mostly work in special systems) are treated as chinese space
+    * Enhanced gb2312-add.dat to support all novels in http://www.dragonsky.net
+      Total: 2689 additional chinese words
+
 0.16    2003.04.29 07:12  Qing-Jie Zhou
     * Add support via http://rt.cpan.org
     * Add ucm/gbk2gb.pl to generate gb2312-add.dat with
