@@ -1,6 +1,6 @@
 #!/usr/local/bin/perl
 #use ExtUtils::testlib;
-$VERSION = '0.12';
+$VERSION = '0.13';
 
 =head1 NAME
 

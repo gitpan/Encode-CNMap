@@ -3,11 +3,11 @@
 #	.Tab   Unicode -> Encoding
 #	.Ucm   Encoding -> Unicode, Original
 
-&tab2ucm("gb2312-simp", "NJUC2GB.TAB", "euc-cn.ucm");
-&tab2ucm("big5-trad", "NJUC2B5.TAB", "cp950.ucm");
+&tab2ucm("gb2312-simp", "NJUC2GB.TAB", "euc-cn.ucm", "gb2312-add.dat");
+&tab2ucm("big5-trad", "NJUC2B5.TAB", "cp950.ucm", "");
 
 sub tab2ucm{
-my ($ucmname, $tabfile, $ucmorg)=@_;
+my ($ucmname, $tabfile, $ucmorg, $patchfile)=@_;
 my $ucmdst="$ucmname.ucm";
 
 #------------------Read TAB file
@@ -71,6 +71,17 @@ for($i=0, $ucode=0; $i<length($buf); $i+=2, $ucode++){
 	printf W " |%d", $skip_flag;
 	print W " # $encode" if $encode_low>127 and $encode_high>=32;
 	print W "\n";
+}
+
+#------------------Read Patch file
+if($patchfile ne '') {
+	open PATCH, $patchfile;
+	while(<PATCH>) {
+		chomp;
+		next if $_ eq '';
+		print W $_."\n";
+	}
+	close PATCH;
 }
 
 print W "END CHARMAP\n";

@@ -1,3 +1,7 @@
+0.13    2003.02.02 20:41  Qing-Jie Zhou
+    * Add Patchfile to tab2ucm.pl
+    * Patch GB2312 UCM to support Jin-Yong's novels in GBK encoding
+
 0.12    2003.01.30 17:51  Qing-Jie Zhou
 	* Modify README to change tabs into spaces
 
